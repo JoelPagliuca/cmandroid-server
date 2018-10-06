@@ -1,0 +1,16 @@
+@startuml
+component "cmandroid-server" as S
+component "client" as C
+rectangle Device1 as D1
+rectangle Device2 as D2
+
+S -right- HTTP
+S -left- ADB
+ADB -up-> TCP
+ADB -up-> USB
+
+C --> HTTP : /tap
+
+D1 -down- TCP
+D2 -down- USB
+@enduml
