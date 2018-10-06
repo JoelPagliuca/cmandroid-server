@@ -1,0 +1,109 @@
+{
+  "paths": {
+    "/devicelist": {
+      "get": {
+        "operationId": "get-devicelist",
+        "summary": "get a list of all the devices the server can access",
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "x-oad-type": "object",
+              "type": "object",
+              "title": "list of devices",
+              "properties": {
+                "devices": {
+                  "x-oad-type": "array",
+                  "type": "array",
+                  "items": {
+                    "x-oad-type": "string",
+                    "type": "string",
+                    "title": "device id"
+                  }
+                }
+              }
+            },
+            "x-oad-type": "response"
+          }
+        }
+      },
+      "x-oad-type": "operation"
+    },
+    "/tap": {
+      "post": {
+        "operationId": "post-tap",
+        "summary": "Input an x and y to perform the tap input on the device",
+        "responses": {
+          "204": {
+            "description": "success",
+            "x-oad-type": "response"
+          },
+          "400": {
+            "$ref": "#/responses/BadInputResponse",
+            "x-oad-type": "reference"
+          }
+        }
+      },
+      "x-oad-type": "operation"
+    }
+  },
+  "parameters": {
+    "tap-input": {
+      "name": "tap-input",
+      "in": "body",
+      "required": true,
+      "schema": {
+        "x-oad-type": "object",
+        "type": "object",
+        "properties": {
+          "deviceId": {
+            "x-oad-type": "string",
+            "type": "string",
+            "title": "ID of the target device"
+          },
+          "x": {
+            "x-oad-type": "integer",
+            "type": "integer",
+            "title": "x position of the tap",
+            "format": "int32"
+          },
+          "y": {
+            "x-oad-type": "integer",
+            "type": "integer",
+            "title": "y position of the tap",
+            "format": "int32"
+          }
+        },
+        "required": [
+          "deviceId",
+          "x",
+          "y"
+        ]
+      },
+      "x-oad-type": "parameter"
+    }
+  },
+  "responses": {
+    "BadInputResponse": {
+      "description": "The parameters received by the server were poorly formed",
+      "schema": {
+        "x-oad-type": "string",
+        "type": "string",
+        "default": "Parameters received were not in the correct format"
+      },
+      "x-oad-type": "response"
+    }
+  },
+  "info": {
+    "title": "Cmandroid API",
+    "version": "0.0.0",
+    "contact": {
+      "name": "Joel Pagliuca"
+    }
+  },
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "swagger": "2.0"
+}
