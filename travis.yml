@@ -1,0 +1,14 @@
+language: python
+sudo: disabled
+os: Linux
+
+branches:
+  only:
+  - master
+  - dev
+
+install:
+  - pip install plantuml
+
+script:
+  - ./scripts/build-docs.sh
