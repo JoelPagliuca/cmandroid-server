@@ -11,5 +11,5 @@ matrix:
       - pip install plantuml
     script:
       - ./scripts/build-docs.sh
-    after-success:
+    after_success:
       - ./scripts/push-docs.sh
