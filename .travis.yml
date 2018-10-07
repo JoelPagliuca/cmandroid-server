@@ -5,11 +5,11 @@ branches:
 matrix:
   include:
     # build documentation
-    language: python
-    sudo: disabled
-    install:
-      - pip install plantuml
-    script:
-      - ./scripts/build-docs.sh
-    after_success:
-      - ./scripts/push-docs.sh
+    - language: python
+      sudo: disabled
+      install:
+        - pip install plantuml
+      script:
+        - ./scripts/build-docs.sh
+      after_success:
+        - ./scripts/push-docs.sh
