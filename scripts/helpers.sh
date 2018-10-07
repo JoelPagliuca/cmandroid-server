@@ -10,6 +10,7 @@ setup_git() {
 
 commit_docs() {
 	git checkout -b docs
+	git fetch
 	git add . ./docs/*.png
 	git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
 }
