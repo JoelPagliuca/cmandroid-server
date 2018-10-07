@@ -1,13 +1,15 @@
-language: python
-sudo: disabled
-os: Linux
-
 branches:
   only:
   - master
 
-install:
-  - pip install plantuml
-
-script:
-  - ./scripts/build-docs.sh
+matrix:
+  include:
+    # build documentation
+    language: python
+    sudo: disabled
+    install:
+      - pip install plantuml
+    script:
+      - ./scripts/build-docs.sh
+    after-success:
+      - ./scripts/push-docs.sh
