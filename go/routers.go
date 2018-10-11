@@ -12,11 +12,11 @@ package swagger
 import (
 	"fmt"
 	"net/http"
-	"strings"
 
 	"github.com/gorilla/mux"
 )
 
+// Route all the data we need for a router entry
 type Route struct {
 	Name        string
 	Method      string
@@ -24,8 +24,10 @@ type Route struct {
 	HandlerFunc http.HandlerFunc
 }
 
+// Routes list of routes
 type Routes []Route
 
+// NewRouter generate the router from the handlers below
 func NewRouter() *mux.Router {
 	router := mux.NewRouter().StrictSlash(true)
 	for _, route := range routes {
@@ -43,6 +45,7 @@ func NewRouter() *mux.Router {
 	return router
 }
 
+// Index generic index page
 func Index(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hello World!")
 }
