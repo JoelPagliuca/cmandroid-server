@@ -51,21 +51,21 @@ var routes = Routes{
 	Route{
 		"Index",
 		"GET",
-		"//",
+		"/",
 		Index,
 	},
 
 	Route{
 		"GetDevicelist",
 		"GET",
-		"//devicelist",
+		"/devicelist",
 		GetDevicelist,
 	},
 
 	Route{
 		"PostTap",
-		strings.ToUpper("Post"),
-		"//tap",
+		"POST",
+		"/tap",
 		PostTap,
 	},
 }
