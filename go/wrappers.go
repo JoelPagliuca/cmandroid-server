@@ -22,3 +22,11 @@ func Logger(inner http.Handler, name string) http.Handler {
 		)
 	})
 }
+
+// BasicHeaders Adds the standard headers for a REST endpoint
+func BasicHeaders(inner http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		inner.ServeHTTP(w, r)
+		w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	})
+}
