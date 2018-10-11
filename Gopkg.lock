@@ -2,6 +2,14 @@
 
 
 [[projects]]
+  branch = "master"
+  digest = "1:750e747d0aad97b79f4a4e00034bae415c2ea793fd9e61438d966ee9c79579bf"
+  name = "github.com/google/shlex"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "6f45313302b9c56850fc17f99e40caebce98c716"
+
+[[projects]]
   digest = "1:c79fb010be38a59d657c48c6ba1d003a8aa651fa56b579d959d74573b7dff8e1"
   name = "github.com/gorilla/context"
   packages = ["."]
@@ -20,6 +28,9 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  input-imports = ["github.com/gorilla/mux"]
+  input-imports = [
+    "github.com/google/shlex",
+    "github.com/gorilla/mux",
+  ]
   solver-name = "gps-cdcl"
   solver-version = 1
