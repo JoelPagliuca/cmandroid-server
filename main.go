@@ -26,6 +26,7 @@ func usage() {
 func main() {
 	helpFlag := flag.Bool("h", false, "Display this help text")
 	port := flag.Int("p", 8080, "Port to run the server on")
+	adbPath := flag.String("adb", "adb", "Path to adb")
 	flag.Parse()
 
 	if *helpFlag {
@@ -34,6 +35,7 @@ func main() {
 	}
 
 	log.Printf("Server started on port " + fmt.Sprint(*port))
+	log.Printf("Using " + *adbPath + " as adb")
 
 	router := sw.NewRouter()
 
