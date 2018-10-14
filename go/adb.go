@@ -12,8 +12,9 @@ func AdbGetDevices() (ListOfDevices, int) {
 	return MockListOfDevices, 0
 }
 
-func AdbTap(deviceId string, x int, y int) int {
+// AdbTap send a tap event to the device
+func AdbTap(deviceId string, x int, y int) error {
 	cmd := exec.Command(AdbBinary, "-d", deviceId, "input", "tap", fmt.Sprint(x), fmt.Sprint(y))
-	cmd.Run()
-	return 0
+	err := cmd.Run()
+	return err
 }
