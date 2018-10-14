@@ -1,4 +1,4 @@
-package swagger
+package cmandroid
 
 // ListOfDevices {"devices":["F39C7C991AD0","5D05814EF3F1","DF172F869D0C"]}
 type ListOfDevices struct {

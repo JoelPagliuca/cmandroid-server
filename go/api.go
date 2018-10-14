@@ -1,4 +1,4 @@
-package swagger
+package cmandroid
 
 import (
 	"encoding/json"
