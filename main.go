@@ -36,6 +36,7 @@ func main() {
 
 	log.Printf("Server started on port " + fmt.Sprint(*port))
 	log.Printf("Using " + *adbPath + " as adb")
+	sw.AdbBinary = *adbPath
 
 	router := sw.NewRouter()
 

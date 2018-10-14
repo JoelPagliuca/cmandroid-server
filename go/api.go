@@ -11,7 +11,8 @@ import (
 
 // GetDevicelist gives the list of attached devices
 func GetDevicelist(w http.ResponseWriter, r *http.Request) {
-	output, _ := json.Marshal(MockListOfDevices)
+	deviceList, _ := AdbGetDevices()
+	output, _ := json.Marshal(deviceList)
 	log.Printf("$ adb devices")
 	w.Write(output)
 	w.WriteHeader(http.StatusOK)
@@ -22,6 +23,7 @@ func PostTap(w http.ResponseWriter, r *http.Request) {
 	tap := TapData{}
 	json.NewDecoder(r.Body).Decode(&tap)
 	command := fmt.Sprintf("adb -d %s shell input tap %d %d", tap.DeviceID, tap.X, tap.Y)
+	AdbTap(tap.DeviceID, tap.X, tap.Y)
 	tokens, _ := shlex.Split(command)
 	log.Printf("$ %v", tokens)
 	w.WriteHeader(http.StatusOK)
