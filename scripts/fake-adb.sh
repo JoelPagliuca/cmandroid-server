@@ -7,7 +7,7 @@ if [ "$1" == devices ]; then
 	echo -e "DF172F869D0C\tdevice"
 elif [ "$1" == "-d" ]; then
 	CMD=$@
-	echo "running 'adb ${CMD[@]:3}' on device '$2'"
+	echo "running 'adb ${CMD[@]:3}' on device '$2'" >> fake-adb.log 
 else
 	echo "not an expected command"
 	exit 1
