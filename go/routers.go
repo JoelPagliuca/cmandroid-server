@@ -1,7 +1,6 @@
 package cmandroid
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -19,7 +18,31 @@ type Route struct {
 type Routes []Route
 
 // NewRouter generate the router from the handlers below
-func NewRouter() *mux.Router {
+func NewRouter(app App) *mux.Router {
+
+	var routes = Routes{
+		Route{
+			"Index",
+			"GET",
+			"/",
+			app.Index,
+		},
+
+		Route{
+			"GetDevicelist",
+			"GET",
+			"/devicelist",
+			app.GetDevicelist,
+		},
+
+		Route{
+			"PostTap",
+			"POST",
+			"/tap",
+			app.PostTap,
+		},
+	}
+
 	router := mux.NewRouter().StrictSlash(true)
 	for _, route := range routes {
 		var handler http.Handler
@@ -35,32 +58,4 @@ func NewRouter() *mux.Router {
 	}
 
 	return router
-}
-
-// Index generic index page
-func Index(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "cmandroid server")
-}
-
-var routes = Routes{
-	Route{
-		"Index",
-		"GET",
-		"/",
-		Index,
-	},
-
-	Route{
-		"GetDevicelist",
-		"GET",
-		"/devicelist",
-		GetDevicelist,
-	},
-
-	Route{
-		"PostTap",
-		"POST",
-		"/tap",
-		PostTap,
-	},
 }

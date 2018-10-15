@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"os"
 
-	sw "github.com/JoelPagliuca/cmandroid-server/go"
+	cm "github.com/JoelPagliuca/cmandroid-server/go"
 )
 
 // VERSION program version
@@ -34,12 +34,13 @@ func main() {
 		os.Exit(0)
 	}
 
-	log.Printf("Server started on port " + fmt.Sprint(*port))
 	log.Printf("Using " + *adbPath + " as adb")
-	sw.AdbBinary = *adbPath
 
-	router := sw.NewRouter()
+	adb := cm.Adb{AdbBinary: *adbPath}
+	app := cm.App{Adb: adb}
+	router := cm.NewRouter(app)
 
+	log.Printf("Server started on port " + fmt.Sprint(*port))
 	portString := fmt.Sprintf(":%d", *port)
 	log.Fatal(http.ListenAndServe(portString, router))
 }
