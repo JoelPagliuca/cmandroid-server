@@ -37,7 +37,7 @@ func main() {
 	log.Printf("Using " + *adbPath + " as adb")
 
 	adb := cm.Adb{AdbBinary: *adbPath}
-	app := cm.App{Adb: adb}
+	app := cm.App{Adb: &adb}
 	router := cm.NewRouter(app)
 
 	log.Printf("Server started on port " + fmt.Sprint(*port))

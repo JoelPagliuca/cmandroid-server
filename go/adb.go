@@ -18,7 +18,7 @@ type Adb struct {
 }
 
 // Run run an adb command
-func (adb Adb) Run(device string, args []string) (string, error) {
+func (adb *Adb) Run(device string, args []string) (string, error) {
 	var cmd *exec.Cmd
 	if device != "" {
 		argsWithDevice := append([]string{"-d", device}, args...)
@@ -45,8 +45,8 @@ func AdbGetDevices(adb AdbInterface) (ListOfDevices, error) {
 	if splitCommandOutput[0] == "List of devices attached" {
 		var deviceIds []string
 		for _, deviceLine := range splitCommandOutput[1:] {
-			deviceID := strings.Split(deviceLine, "")
-			deviceIds = append(deviceID, deviceIds...)
+			deviceID := strings.Fields(deviceLine)[0]
+			deviceIds = append(deviceIds, deviceID)
 		}
 		return ListOfDevices{deviceIds}, nil
 	}
