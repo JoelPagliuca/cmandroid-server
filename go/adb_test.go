@@ -8,7 +8,7 @@ import (
 )
 
 // MockListOfDevices used for mocking purposes
-var MockListOfDevices = ListOfDevices{[]string{"F39C7C991AD0", "5D05814EF3F1", "DF172F869D0C"}}
+var listOfDevices1 = ListOfDevices{[]string{"F39C7C991AD0", "5D05814EF3F1", "DF172F869D0C"}}
 
 func TestAdbGetDevices(t *testing.T) {
 	mockAdb := &mocks.AdbInterface{}
@@ -28,7 +28,7 @@ DF172F869D0C	device`, nil)
 		{
 			"Normal scenario",
 			args{adb: mockAdb},
-			MockListOfDevices,
+			listOfDevices1,
 			false,
 		},
 	}
