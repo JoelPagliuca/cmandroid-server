@@ -9,17 +9,34 @@ ifneq ($(GITUNTRACKEDCHANGES),)
 endif
 
 GO_LDFLAGS=-ldflags "-w -X main.GITCOMMIT=$(GITCOMMIT) -X main.VERSION=$(VERSION)"
+PLATFORMS=$(shell cat platforms.txt)
+
+BUILDDIR=build
 
 .PHONY: help
 help: ## Print this message and exit
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 .PHONY: build
-build: $(NAME) ## Builds a dynamic executable or package
+build: $(NAME) ## Builds an executable for host platform
 
 $(NAME): $(wildcard *.go) VERSION.txt
 	@echo "+ $@"
 	go build $(GO_LDFLAGS) -o $(NAME) .
+
+# Cross compilation function
+define buildcross
+mkdir -p $(BUILDDIR)/$(1)/$(2);
+GOOS=$(1) GOARCH=$(2) CGO_ENABLED=$(CGO_ENABLED) go build $(GO_LDFLAGS)\
+	 -o $(BUILDDIR)/$(1)/$(2)/$(NAME);
+md5sum $(BUILDDIR)/$(1)/$(2)/$(NAME) > $(BUILDDIR)/$(1)/$(2)/$(NAME).md5;
+sha256sum $(BUILDDIR)/$(1)/$(2)/$(NAME) > $(BUILDDIR)/$(1)/$(2)/$(NAME).sha256;
+endef
+
+.PHONY: cross
+cross: *.go VERSION.txt ## Builds the cross-compiled binaries
+	@echo "+ $@"
+	$(foreach GOOSARCH,$(PLATFORMS), $(call buildcross,$(subst /,,$(dir $(GOOSARCH))),$(notdir $(GOOSARCH))))
 
 .PHONY: docs
 docs: ## Builds documentation
@@ -39,4 +56,4 @@ vet: ## Verifies `go vet` passes
 .PHONY: clean
 clean: ## Cleanup any build binaries or packages
 	@echo "+ $@"
-	$(RM) $(NAME)
+	rm $(NAME)
