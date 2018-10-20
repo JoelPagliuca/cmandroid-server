@@ -46,7 +46,7 @@ docs: ## Builds documentation
 .PHONY: test
 test: ## Runs the go tests
 	@echo "+ $@"
-	@go test -v $(shell go list ./... | grep -v vendor)
+	@go test -v $(shell go list ./... | grep -v vendor) | grep -v "no test files"
 
 .PHONY: vet
 vet: ## Verifies `go vet` passes
