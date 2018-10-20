@@ -1,2 +1,4 @@
 vendor/*
 fake-adb.log
+cmandroid-server
+*.png
