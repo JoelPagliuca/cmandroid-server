@@ -1,6 +1,7 @@
 branches:
   only:
   - master
+  - develop
 
 matrix:
   include:
@@ -10,4 +11,15 @@ matrix:
       install:
         - pip install plantuml
       script:
-        - ./scripts/build-docs.sh
+        - make docs
+    # run tests
+    - language: go
+      go:
+        - "1.11"
+      sudo: disabled
+      before_install:
+        - curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+      install:
+        - dep ensure
+      script:
+        - make test
