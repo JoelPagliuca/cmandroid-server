@@ -45,6 +45,9 @@ func AdbGetDevices(adb AdbInterface) (ListOfDevices, error) {
 	if splitCommandOutput[0] == "List of devices attached" {
 		var deviceIds []string
 		for _, deviceLine := range splitCommandOutput[1:] {
+			if deviceLine == "" {
+				continue
+			}
 			deviceID := strings.Fields(deviceLine)[0]
 			deviceIds = append(deviceIds, deviceID)
 		}
