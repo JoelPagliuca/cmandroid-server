@@ -13,6 +13,7 @@ var listOfDevices1 = ListOfDevices{[]string{"F39C7C991AD0", "5D05814EF3F1", "DF1
 func TestAdbGetDevices(t *testing.T) {
 	mockAdb := &mocks.AdbInterface{}
 	mockAdb.On("Run", "", []string{"devices"}).Return(`List of devices attached
+
 F39C7C991AD0	device
 5D05814EF3F1	device
 DF172F869D0C	device`, nil)

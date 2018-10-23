@@ -12,3 +12,4 @@ Farm out adb commands using this golang server
 | Branch | Status |
 | ------ | ------ |
 | master | [![Build Status](https://travis-ci.org/JoelPagliuca/cmandroid-server.svg?branch=master)](https://travis-ci.org/JoelPagliuca/cmandroid-server) |
+| develop | [![Build Status](https://travis-ci.org/JoelPagliuca/cmandroid-server.svg?branch=develop)](https://travis-ci.org/JoelPagliuca/cmandroid-server) |
