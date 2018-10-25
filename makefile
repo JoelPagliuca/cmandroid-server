@@ -28,9 +28,9 @@ $(NAME): $(wildcard *.go) VERSION.txt
 define buildcross
 mkdir -p $(BUILDDIR)/$(1)/$(2);
 GOOS=$(1) GOARCH=$(2) CGO_ENABLED=$(CGO_ENABLED) go build $(GO_LDFLAGS)\
-	 -o $(BUILDDIR)/$(1)/$(2)/$(NAME);
-md5sum $(BUILDDIR)/$(1)/$(2)/$(NAME) > $(BUILDDIR)/$(1)/$(2)/$(NAME).md5;
-sha256sum $(BUILDDIR)/$(1)/$(2)/$(NAME) > $(BUILDDIR)/$(1)/$(2)/$(NAME).sha256;
+	 -o $(BUILDDIR)/$(1)/$(2)/$(NAME)-$(1)-$(2);
+md5sum $(BUILDDIR)/$(1)/$(2)/$(NAME)-$(1)-$(2) > $(BUILDDIR)/$(1)/$(2)/$(NAME)-$(1)-$(2).md5;
+sha256sum $(BUILDDIR)/$(1)/$(2)/$(NAME)-$(1)-$(2) > $(BUILDDIR)/$(1)/$(2)/$(NAME)-$(1)-$(2).sha256;
 endef
 
 .PHONY: cross
@@ -56,4 +56,5 @@ vet: ## Verifies `go vet` passes
 .PHONY: clean
 clean: ## Cleanup any build binaries or packages
 	@echo "+ $@"
-	rm $(NAME)
+	rm -f $(NAME)
+	rm -rf $(BUILDDIR)
