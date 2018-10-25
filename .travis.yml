@@ -4,31 +4,21 @@ branches:
   - develop
   - /^v\d.*$/
 
-matrix:
-  include:
-    # build documentation
-    - language: python
-      sudo: disabled
-      install:
-        - pip install plantuml
-      script:
-        - make docs
-    # run tests
-    - language: go
-      go: "1.11"
-      sudo: disabled
-      before_install:
-        - curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
-      install:
-        - dep ensure
-      script:
-        - make test
-        - make cross
-      deploy:
-        provider: releases
-        api_key: $GHTOKEN
-        file_glob: true
-        file: build/**/*
-        skip_cleanup: true
-        on:
-          tags: true
+language: go
+go: "1.11"
+sudo: disabled
+before_install:
+  - curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+install:
+  - dep ensure
+script:
+  - make test
+  - make cross
+deploy:
+  provider: releases
+  api_key: $GHTOKEN
+  file_glob: true
+  file: build/**/*
+  skip_cleanup: true
+  on:
+    tags: true
