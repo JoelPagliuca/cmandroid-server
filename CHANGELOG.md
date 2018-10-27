@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 * More documentation
+* `/swaggerui/` endpoint for testing the API
 
 ### Fixed
 * Test coverage
