@@ -42,6 +42,14 @@
   version = "v1.0.0"
 
 [[projects]]
+  digest = "1:0598c246e4732bfb359cb3366cbe73245ccd3661275b86c29b186287d3d7997a"
+  name = "github.com/rakyll/statik"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "1355192d24db2566a83c3914e187e2a7e7679832"
+  version = "v0.1.5"
+
+[[projects]]
   digest = "1:ac83cf90d08b63ad5f7e020ef480d319ae890c208f8524622a2f3136e2686b02"
   name = "github.com/stretchr/objx"
   packages = ["."]
@@ -66,6 +74,7 @@
   input-imports = [
     "github.com/google/shlex",
     "github.com/gorilla/mux",
+    "github.com/rakyll/statik",
     "github.com/stretchr/testify/mock",
   ]
   solver-name = "gps-cdcl"

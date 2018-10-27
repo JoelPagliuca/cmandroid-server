@@ -20,7 +20,7 @@ help: ## Print this message and exit
 .PHONY: build
 build: $(NAME) ## Builds an executable for host platform
 
-$(NAME): $(wildcard *.go) VERSION.txt
+$(NAME): static $(wildcard *.go) VERSION.txt
 	@echo "+ $@"
 	go build $(GO_LDFLAGS) -o $(NAME) .
 
@@ -34,7 +34,7 @@ sha256sum $(BUILDDIR)/$(1)/$(2)/$(NAME)-$(1)-$(2) > $(BUILDDIR)/$(1)/$(2)/$(NAME
 endef
 
 .PHONY: cross
-cross: *.go VERSION.txt ## Builds the cross-compiled binaries
+cross: static *.go VERSION.txt ## Builds the cross-compiled binaries
 	@echo "+ $@"
 	$(foreach GOOSARCH,$(PLATFORMS), $(call buildcross,$(subst /,,$(dir $(GOOSARCH))),$(notdir $(GOOSARCH))))
 
@@ -42,6 +42,13 @@ cross: *.go VERSION.txt ## Builds the cross-compiled binaries
 docs: ## Builds documentation
 	@echo "+ $@"
 	./scripts/build-docs.sh
+
+.PHONY: static
+static: ## Compile the static content for the server
+	@echo "+ $@"
+	go get -u github.com/rakyll/statik
+	statik -src=./go/swaggerui/
+	mv -f statik go/statik
 
 .PHONY: test
 test: ## Runs the go tests
@@ -58,3 +65,4 @@ clean: ## Cleanup any build binaries or packages
 	@echo "+ $@"
 	rm -f $(NAME)
 	rm -rf $(BUILDDIR)
+	rm -rf ./go/statik/

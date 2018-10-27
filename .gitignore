@@ -2,3 +2,4 @@ vendor/*
 fake-adb.log
 cmandroid-server
 build/*
+go/statik/*

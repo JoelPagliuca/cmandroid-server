@@ -3,7 +3,9 @@ package cmandroid
 import (
 	"net/http"
 
+	_ "github.com/JoelPagliuca/cmandroid-server/go/statik"
 	"github.com/gorilla/mux"
+	"github.com/rakyll/statik/fs"
 )
 
 // Route all the data we need for a router entry
@@ -56,6 +58,17 @@ func NewRouter(app App) *mux.Router {
 			Name(route.Name).
 			Handler(handler)
 	}
+
+	// statik swaggerui
+	statikFS, err := fs.New()
+	if err != nil {
+		panic(err)
+	}
+
+	statikServer := http.FileServer(statikFS)
+	swaggerHandler := http.StripPrefix("/swaggerui/", statikServer)
+	swaggerHandler = Logger(swaggerHandler, "SwaggerUI")
+	router.PathPrefix("/swaggerui/").Handler(swaggerHandler)
 
 	return router
 }

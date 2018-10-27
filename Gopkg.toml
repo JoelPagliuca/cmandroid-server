@@ -36,3 +36,7 @@
 [[constraint]]
   branch = "master"
   name = "github.com/google/shlex"
+
+[[constraint]]
+  name = "github.com/rakyll/statik"
+  version = "0.1.5"

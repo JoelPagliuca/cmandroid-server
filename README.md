@@ -52,11 +52,22 @@ clean                          Cleanup any build binaries or packages
 cross                          Builds the cross-compiled binaries
 docs                           Builds documentation
 help                           Print this message and exit
+static                         Compile the static content for the server
 test                           Runs the go tests
 vet                            Verifies `go vet` passes
 ```
 
-[More docs](./docs)
+### Docs
+* This README file
+* [Design docs](./docs)
+* [OpenAPI spec](./go/swaggerui/openapi.json)
+
+## Built With
+
+* [Gorilla mux](https://github.com/gorilla/mux) - Router
+* [Dep](https://github.com/golang/dep) - Dependency Management
+* [Mockery](https://github.com/vektra/mockery) - Mocking framework
+* [Statik](https://github.com/rakyll/statik/) - Static file embedding
 
 ## License
 
