@@ -1,9 +1,20 @@
 {
+  "tags": [
+    {
+      "name": "input"
+    },
+    {
+      "name": "enumeration"
+    }
+  ],
   "paths": {
     "/devicelist": {
       "get": {
         "operationId": "get-devicelist",
         "summary": "get a list of all the devices the server can access",
+        "tags": [
+          "enumeration"
+        ],
         "responses": {
           "200": {
             "description": "ok",
@@ -33,6 +44,9 @@
       "post": {
         "operationId": "post-tap",
         "summary": "Input an x and y to perform the tap input on the device",
+        "tags": [
+          "input"
+        ],
         "responses": {
           "204": {
             "description": "success",
@@ -96,14 +110,28 @@
   },
   "info": {
     "title": "Cmandroid API",
-    "version": "0.0.0",
+    "version": "1.0.0",
+    "description": "Farm out adb commands using this golang server",
+    "termsOfService": "https://github.com/JoelPagliuca/cmandroid-server",
     "contact": {
       "name": "Joel Pagliuca"
+    },
+    "license": {
+      "name": "MIT"
     }
+  },
+  "externalDocs": {
+    "url": "https://github.com/JoelPagliuca/cmandroid-server"
   },
   "basePath": "/",
   "schemes": [
     "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
   ],
   "swagger": "2.0"
 }
