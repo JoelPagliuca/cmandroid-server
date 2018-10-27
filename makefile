@@ -43,15 +43,13 @@ docs: ## Builds documentation
 	@echo "+ $@"
 	./scripts/build-docs.sh
 
-.PHONY: static
 static: ## Compile the static content for the server
 	@echo "+ $@"
 	go get -u github.com/rakyll/statik
-	statik -src=./go/swaggerui/
-	mv -f statik go/statik
+	statik -src=./go/swaggerui/ -dest=./go/ -f
 
 .PHONY: test
-test: ## Runs the go tests
+test: static ## Runs the go tests
 	@echo "+ $@"
 	@go test -v $(shell go list ./... | grep -v vendor) | grep -v "no test files"
 
