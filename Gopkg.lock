@@ -42,9 +42,9 @@
   version = "v1.0.0"
 
 [[projects]]
-  digest = "1:0598c246e4732bfb359cb3366cbe73245ccd3661275b86c29b186287d3d7997a"
+  digest = "1:ea0700160aca4ef099f4e06686a665a87691f4248dddd40796925eda2e46bd64"
   name = "github.com/rakyll/statik"
-  packages = ["."]
+  packages = ["fs"]
   pruneopts = "UT"
   revision = "1355192d24db2566a83c3914e187e2a7e7679832"
   version = "v0.1.5"
@@ -74,7 +74,7 @@
   input-imports = [
     "github.com/google/shlex",
     "github.com/gorilla/mux",
-    "github.com/rakyll/statik",
+    "github.com/rakyll/statik/fs",
     "github.com/stretchr/testify/mock",
   ]
   solver-name = "gps-cdcl"
