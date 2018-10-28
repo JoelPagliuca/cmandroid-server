@@ -56,7 +56,37 @@
             "$ref": "#/responses/BadInputResponse",
             "x-oad-type": "reference"
           }
-        }
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/tap-input",
+            "x-oad-type": "reference"
+          }
+        ]
+      },
+      "x-oad-type": "operation"
+    },
+    "/startpackage": {
+      "post": {
+        "tags": [
+          "input"
+        ],
+        "responses": {
+          "204": {
+            "description": "success",
+            "x-oad-type": "response"
+          },
+          "400": {
+            "$ref": "#/responses/BadInputResponse",
+            "x-oad-type": "reference"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/package-input",
+            "x-oad-type": "reference"
+          }
+        ]
       },
       "x-oad-type": "operation"
     }
@@ -95,6 +125,26 @@
         ]
       },
       "x-oad-type": "parameter"
+    },
+    "package-input": {
+      "name": "package-input",
+      "in": "body",
+      "required": true,
+      "schema": {
+        "x-oad-type": "object",
+        "type": "object",
+        "properties": {
+          "deviceId": {
+            "x-oad-type": "reference",
+            "$ref": "#/definitions/deviceId"
+          },
+          "packageName": {
+            "x-oad-type": "string",
+            "type": "string"
+          }
+        }
+      },
+      "x-oad-type": "parameter"
     }
   },
   "responses": {
@@ -108,13 +158,22 @@
       "x-oad-type": "response"
     }
   },
+  "definitions": {
+    "deviceId": {
+      "x-oad-type": "string",
+      "type": "string",
+      "title": "Device ID",
+      "description": "ID of the target device"
+    }
+  },
   "info": {
     "title": "Cmandroid API",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "description": "Farm out adb commands using this golang server",
     "termsOfService": "https://github.com/JoelPagliuca/cmandroid-server",
     "contact": {
-      "name": "Joel Pagliuca"
+      "name": "Joel Pagliuca",
+      "url": "https://joelpagliuca.me"
     },
     "license": {
       "name": "MIT"
