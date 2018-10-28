@@ -3,7 +3,7 @@ package cmandroid
 import (
 	"net/http"
 
-	_ "github.com/JoelPagliuca/cmandroid-server/go/statik"
+	_ "github.com/JoelPagliuca/cmandroid-server/go/statik" // necessary
 	"github.com/gorilla/mux"
 	"github.com/rakyll/statik/fs"
 )
