@@ -11,3 +11,9 @@ type TapData struct {
 	X        int    `json:"x"`
 	Y        int    `json:"y"`
 }
+
+// PackageData package to be run
+type PackageData struct {
+	DeviceID    string `json:"deviceId"`
+	PackageName string `json:"packageName"`
+}

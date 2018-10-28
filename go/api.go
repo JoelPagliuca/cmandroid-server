@@ -34,6 +34,13 @@ func (app *App) PostTap(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 
+// PostPackage start a package on a device
+func (app *App) PostPackage(w http.ResponseWriter, r *http.Request) {
+	pckage := PackageData{}
+	json.NewDecoder(r.Body).Decode(&pckage)
+	AdbStartPackage(app.Adb, pckage.DeviceID, pckage.PackageName)
+}
+
 // Index generic index page
 func (app *App) Index(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "cmandroid server")
