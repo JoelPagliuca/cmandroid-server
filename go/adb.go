@@ -62,3 +62,10 @@ func AdbTap(adb AdbInterface, deviceID string, x int, y int) error {
 	_, err := adb.Run(deviceID, args)
 	return err
 }
+
+// AdbStartPackage
+func AdbStartPackage(adb AdbInterface, deviceID string, packageName string) error {
+	args := []string{"am", "start", "-p", packageName}
+	_, err := adb.Run(deviceID, args)
+	return err
+}
