@@ -11,7 +11,7 @@ tap() {
 
 startpackage() {
 	curl -X POST http://127.0.0.1:8080/startpackage \
-		--data '{"deviceId":"device1234, "packageName":"com.google.maps"}'
+		--data '{"deviceId":"device1234, "packageName":"com.google.android.apps.maps"}'
 }
 
 $1
