@@ -21,7 +21,7 @@ type Adb struct {
 func (adb *Adb) Run(device string, args []string) (string, error) {
 	var cmd *exec.Cmd
 	if device != "" {
-		argsWithDevice := append([]string{"-d", device}, args...)
+		argsWithDevice := append([]string{"-s", device}, args...)
 		cmd = exec.Command(adb.AdbBinary, argsWithDevice...)
 	} else {
 		cmd = exec.Command(adb.AdbBinary, args...)
@@ -58,14 +58,14 @@ func AdbGetDevices(adb AdbInterface) (ListOfDevices, error) {
 
 // AdbTap send a tap event to the device
 func AdbTap(adb AdbInterface, deviceID string, x int, y int) error {
-	args := []string{"input", "tap", fmt.Sprint(x), fmt.Sprint(y)}
+	args := []string{"shell", "input", "tap", fmt.Sprint(x), fmt.Sprint(y)}
 	_, err := adb.Run(deviceID, args)
 	return err
 }
 
 // AdbStartPackage start a package on a device
 func AdbStartPackage(adb AdbInterface, deviceID string, packageName string) error {
-	args := []string{"am", "start", "-p", packageName}
+	args := []string{"shell", "am", "start", packageName}
 	_, err := adb.Run(deviceID, args)
 	return err
 }
