@@ -12,6 +12,12 @@ type TapData struct {
 	Y        int    `json:"y"`
 }
 
+// KeyboardData a device and keyboard data (text)
+type KeyboardData struct {
+	DeviceID string `json:"deviceId"`
+	Text     string `json:"text"`
+}
+
 // PackageData package to be run
 type PackageData struct {
 	DeviceID    string `json:"deviceId"`

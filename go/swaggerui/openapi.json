@@ -68,6 +68,7 @@
     },
     "/startpackage": {
       "post": {
+        "operationId": "post-package",
         "tags": [
           "input"
         ],
@@ -84,6 +85,31 @@
         "parameters": [
           {
             "$ref": "#/parameters/package-input",
+            "x-oad-type": "reference"
+          }
+        ]
+      },
+      "x-oad-type": "operation"
+    },
+    "/keyboard": {
+      "post": {
+        "operationId": "post-keyboard",
+        "tags": [
+          "input"
+        ],
+        "responses": {
+          "204": {
+            "description": "success",
+            "x-oad-type": "response"
+          },
+          "400": {
+            "$ref": "#/responses/BadInputResponse",
+            "x-oad-type": "reference"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/keyboard-input",
             "x-oad-type": "reference"
           }
         ]
@@ -142,7 +168,35 @@
             "x-oad-type": "string",
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "deviceId",
+          "packageName"
+        ]
+      },
+      "x-oad-type": "parameter"
+    },
+    "keyboard-input": {
+      "name": "keyboard-input",
+      "in": "body",
+      "required": true,
+      "schema": {
+        "x-oad-type": "object",
+        "type": "object",
+        "properties": {
+          "deviceId": {
+            "x-oad-type": "reference",
+            "$ref": "#/definitions/deviceId"
+          },
+          "text": {
+            "x-oad-type": "string",
+            "type": "string"
+          }
+        },
+        "required": [
+          "deviceId",
+          "text"
+        ]
       },
       "x-oad-type": "parameter"
     }

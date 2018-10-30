@@ -69,3 +69,10 @@ func AdbStartPackage(adb AdbInterface, deviceID string, packageName string) erro
 	_, err := adb.Run(deviceID, args)
 	return err
 }
+
+// AdbKeyboard send text to the device
+func AdbKeyboard(adb AdbInterface, deviceID string, keyboard string) error {
+	args := []string{"shell", "input", "text", keyboard}
+	_, err := adb.Run(deviceID, args)
+	return err
+}

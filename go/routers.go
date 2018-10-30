@@ -50,6 +50,13 @@ func NewRouter(app App) *mux.Router {
 			"/startpackage",
 			app.PostPackage,
 		},
+
+		Route{
+			"PostKeyboard",
+			"POST",
+			"/keyboard",
+			app.PostKeyboard,
+		},
 	}
 
 	router := mux.NewRouter().StrictSlash(true)

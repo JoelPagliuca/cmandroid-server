@@ -41,6 +41,13 @@ func (app *App) PostPackage(w http.ResponseWriter, r *http.Request) {
 	AdbStartPackage(app.Adb, pckage.DeviceID, pckage.PackageName)
 }
 
+// PostKeyboard input text to a device
+func (app *App) PostKeyboard(w http.ResponseWriter, r *http.Request) {
+	keyboard := KeyboardData{}
+	json.NewDecoder(r.Body).Decode(&keyboard)
+	AdbKeyboard(app.Adb, keyboard.DeviceID, keyboard.Text)
+}
+
 // Index generic index page
 func (app *App) Index(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "cmandroid server")
