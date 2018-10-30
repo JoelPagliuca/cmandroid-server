@@ -43,6 +43,13 @@ func NewRouter(app App) *mux.Router {
 			"/tap",
 			app.PostTap,
 		},
+
+		Route{
+			"PostPackage",
+			"POST",
+			"/startpackage",
+			app.PostPackage,
+		},
 	}
 
 	router := mux.NewRouter().StrictSlash(true)
